@@ -2,7 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { ApplicationConfig, HttpAdapterHost } from '@nestjs/core';
 
 import Server from 'next';
-import type { DynamicRoutes } from 'next/dist/server/router';
+// import type { RouteMatcher } from 'next/dist/server/route-matchers/route-matcher';
 
 import { RenderFilter } from './render.filter';
 import { RenderService } from './render.service';
@@ -28,14 +28,15 @@ export class RenderModule {
     }
 
     const nextConfig = (next as any).nextConfig;
-    const nextServer = (next as any).server;
+    const nextServer = (next as any).server || (next as any).server?.server;
 
     const basePath = nextConfig
       ? nextConfig.basePath
       : nextServer.nextConfig.basePath;
 
-    const dynamicRoutes = (nextServer.dynamicRoutes as DynamicRoutes).map(
-      (route) => route.page,
+    const nextDynamicRoutes = nextServer.dynamicRoutes || nextServer.matchers?.matchers?.dynamic || [];
+    const dynamicRoutes = nextDynamicRoutes.map(
+      (route: any) => route.page || route.definition?.page,
     );
 
     const config: Partial<RendererConfig> = {
@@ -82,7 +83,7 @@ export class RenderModule {
     private readonly httpAdapterHost: HttpAdapterHost,
     private readonly applicationConfig: ApplicationConfig,
     private readonly service: RenderService,
-  ) {}
+  ) { }
 
   /**
    * Register the RenderModule.

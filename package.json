@@ -1,6 +1,6 @@
 {
   "name": "nest-next",
-  "version": "10.1.0",
+  "version": "10.1.1-dev.1",
   "description": "Nestjs module to allow for server side rendering with Nextjs",
   "author": "Kyle McCarthy",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "mermaid.cli": "^0.5",
-    "next": "^12.1.5",
+    "next": "^15.1.5",
     "prettier": "^2.6.2",
     "reflect-metadata": "^0.1",
     "tslint": "^6.1.3",

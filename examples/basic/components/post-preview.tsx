@@ -26,7 +26,7 @@ const PostPreview: FC<Props> = ({ post }) => {
         }}
         as={`/blog/${post.slug}`}
       >
-        <a
+        <p
           style={{
             display: 'inline-flex',
             background: 'black',
@@ -38,7 +38,7 @@ const PostPreview: FC<Props> = ({ post }) => {
           }}
         >
           View
-        </a>
+        </p>
       </Link>
     </div>
   );
